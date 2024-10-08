@@ -2,10 +2,10 @@
 
 namespace App\Agenda\Controllers;
 
-class PeopleController
+class PeopleController extends AbstractController
 {
     public function index(): void
     {
-        require_once __DIR__ . '/../Views/people/index.php';
+        echo $this->twig->render('index.twig');
     }
 }

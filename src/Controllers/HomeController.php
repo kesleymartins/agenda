@@ -2,10 +2,10 @@
 
 namespace App\Agenda\Controllers;
 
-class HomeController
+class HomeController extends AbstractController
 {
     public function index(): void
     {
-        require_once __DIR__ . '/../Views/home/index.php';
+        echo $this->twig->render('index.twig');
     }
 }

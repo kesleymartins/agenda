@@ -2,10 +2,10 @@
 
 namespace App\Agenda\Controllers;
 
-class ContactsController
+class ContactsController extends AbstractController
 {
     public function index(): void
     {
-        require_once __DIR__ . '/../Views/contacts/index.php';
+        echo $this->twig->render('index.twig', []);
     }
 }
