@@ -1,0 +1,25 @@
+services:
+  app:
+    container_name: agn-app
+    build: .
+    volumes:
+      - .:/var/www/html
+    networks:
+      - agn-network
+
+  nginx:
+    container_name: agn-nginx
+    image: nginx:latest
+    volumes:
+      - ./src:/var/www/html 
+      - ./.nginx/nginx.conf:/etc/nginx/conf.d/default.conf 
+    ports:
+      - "8000:80"
+    depends_on:
+      - app 
+    networks:
+      - agn-network
+
+networks:
+  agn-network:
+    driver: bridge
