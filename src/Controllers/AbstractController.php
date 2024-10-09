@@ -14,7 +14,10 @@ class AbstractController
         $class = end($class_path);
         $controller = str_replace('Controller', '', $class);
 
-        $loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/../Views/' . strtolower($controller) . '/');
-        $this->twig = new \Twig\Environment($loader, []);
+        $loader = new \Twig\Loader\FilesystemLoader();
+        $loader->addPath(__DIR__ . '/../Views/templates');
+        $loader->addPath(__DIR__ . '/../Views/' . strtolower($controller) . '/');
+
+        $this->twig = new \Twig\Environment($loader);
     }
 }
