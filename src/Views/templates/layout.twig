@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
+</head>
+<body>
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="container">
+      <div class="navbar-brand">
+        <h1 class="title">
+          <a class="navbar-item" href="/">Agenda</a>
+        </h1>
+      </div>
+
+      <div class="navbar-menu">
+        <div class="navbar-end">
+          <a href="/people" class="navbar-item">
+            Pessoas
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container py-6">
+    {% block body %}{% endblock %}
+  </main>
+</body>
+</html>
