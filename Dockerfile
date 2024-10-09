@@ -1,9 +1,9 @@
 FROM php:8.3.12-fpm
 
 RUN apt update 
-RUN apt install -y git libzip-dev unzip zip 
+RUN apt install -y git libzip-dev unzip zip libpq-dev 
 
-RUN docker-php-ext-install zip
+RUN docker-php-ext-install zip pdo pdo_pgsql
 
 RUN useradd -ms /bin/bash agenda
 USER agenda
