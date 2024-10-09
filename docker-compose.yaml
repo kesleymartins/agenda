@@ -20,6 +20,21 @@ services:
     networks:
       - agn-network
 
+  postgres:
+    container_name: agn-postgres
+    image: postgres:16.4
+    env_file:
+      - .env
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    networks:
+      - agn-network
+
+volumes:
+  postgres:
+
 networks:
   agn-network:
     driver: bridge
