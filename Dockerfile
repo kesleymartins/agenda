@@ -14,5 +14,4 @@ COPY --chown=agenda:agenda . /var/www/html
 COPY --from=composer:2.8.0 /usr/bin/composer /usr/local/bin/composer
 RUN composer install
 
-
 EXPOSE 9000
