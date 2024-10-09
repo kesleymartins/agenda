@@ -12,6 +12,9 @@
         }
     ],
     "require": {
-        "twig/twig": "^3.0"
+        "twig/twig": "^3.0",
+        "doctrine/orm": "^3",
+        "doctrine/dbal": "^4",
+        "symfony/cache": "^7"
     }
 }
