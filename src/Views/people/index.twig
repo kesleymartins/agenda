@@ -28,7 +28,13 @@
               <div class="dropdown-menu" id="dropdown-menu" role="menu">
                 <div class="dropdown-content">
                   <a href="/people/{{ person.id }}/edit" class="dropdown-item">Editar</a>
-                  <a href="#" class="dropdown-item">Remover</a>
+
+                  <form action="/people/{{ person.id }}" method="POST">
+                    <input type="hidden" name="_method" value="DELETE">
+
+                    <button class="dropdown-item" type="submit"> Remover</button>
+                  </form>
+
                   <a href="#" class="dropdown-item">Contatos</a>
                 </div>
               </div>
