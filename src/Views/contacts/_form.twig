@@ -1,0 +1,19 @@
+<div class="columns">
+  <div class="column control">
+    <div class="select">
+      <select name="type">
+        <option value="">-- Selecione -- </option>
+
+        {% for type in types %}
+          <option value="{{ type.value }}">{{ type.label }}</option>
+        {% endfor %}
+      </select>
+    </div>
+  </div>
+
+  <div class="column is-10">
+    <div class="control">
+      <input class="input" name="description" type="text" placeholder="Descrição" value="{{ contact.description }}"/>
+    </div>
+  </div>
+</div>
