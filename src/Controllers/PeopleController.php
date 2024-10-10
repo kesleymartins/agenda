@@ -30,4 +30,15 @@ class PeopleController extends AbstractController
             'person' => new Person()
         ]);
     }
+
+    public function create(): void
+    {
+        $person = new Person();
+        $person->setName($_POST['name']);
+        $person->setCpf($_POST['cpf']);
+
+        $this->personRepository->save($person);
+
+        header('Location: /people');
+    }
 }
