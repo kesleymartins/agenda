@@ -21,6 +21,7 @@ $router->add('/people/:person_id/contacts', 'GET', ContactsController::class, 'i
 $router->add('/people/:person_id/contacts/new', 'GET', ContactsController::class, 'new');
 $router->add('/people/:person_id/contacts', 'POST', ContactsController::class, 'create');
 $router->add('/contacts/:id/edit', 'GET', ContactsController::class, 'edit');
+$router->add('/contacts/:id', 'PUT', ContactsController::class, 'update');
 
 $requestMethod = $_SERVER['REQUEST_METHOD'];
 

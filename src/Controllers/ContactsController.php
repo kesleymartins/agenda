@@ -65,4 +65,15 @@ class ContactsController extends AbstractController
             'types' => ContactType::cases()
         ]);
     }
+
+    public function update(int $id): void
+    {
+        $contact = $this->contactRepository->find($id);
+        $contact->setType(ContactType::from((int) $_POST['type']));
+        $contact->setDescription($_POST['description']);
+
+        $this->contactRepository->save($contact);
+
+        header("Location: /people/{$contact->getPerson()->getId()}/contacts");
+    }
 }
