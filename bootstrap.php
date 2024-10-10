@@ -8,7 +8,7 @@ use Symfony\Component\Dotenv\Dotenv;
 require_once 'vendor/autoload.php';
 
 $config = ORMSetup::createAttributeMetadataConfiguration(
-    paths: [__DIR__ . '/../src/Entities/'],
+    paths: [__DIR__ . '/src/Entities/'],
     isDevMode: true,
 );
 
