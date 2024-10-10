@@ -1,0 +1,25 @@
+{% extends 'layout.twig' %}
+
+{% block body %}
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-title">Editar Pessoa</div>
+    </div>
+    <div class="card-content">
+      <form id="form-person" action="/people/{{ person.id }}" method="POST">
+        <div class="mb-3">
+          <input class="input" name="name" type="text" placeholder="Nome" value="{{ person.name }}" />
+        </div>
+
+        <div class="mb-3">
+          <input class="input" name="cpf" type="text" placeholder="CPF" value="{{ person.cpf }}"/>
+        </div>
+      </form>
+
+      <div class="is-flex is-justify-content-end">
+        <button class="button is-primary" type="submit" form="form-person"> Atualizar </button>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

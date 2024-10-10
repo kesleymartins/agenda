@@ -13,5 +13,7 @@ $router->add('/', 'GET', PeopleController::class, 'index');
 $router->add('/people', 'GET', PeopleController::class, 'index');
 $router->add('/people/new', 'GET', PeopleController::class, 'new');
 $router->add('/people', 'POST', PeopleController::class, 'create');
+$router->add('/people/:id/edit', 'GET', PeopleController::class, 'edit');
+$router->add('/people/:id', 'POST', PeopleController::class, 'update');
 
 $router->dispatch($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);

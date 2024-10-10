@@ -41,4 +41,24 @@ class PeopleController extends AbstractController
 
         header('Location: /people');
     }
+
+    public function edit(int $id): void
+    {
+        $person = $this->personRepository->find($id);
+
+        echo $this->twig->render('edit.twig', [
+            'person' => $person
+        ]);
+    }
+
+    public function update(int $id): void
+    {
+        $person = $this->personRepository->find($id);
+        $person->setName($_POST['name']);
+        $person->setCpf($_POST['cpf']);
+
+        $this->personRepository->save($person);
+
+        header('Location: /people');
+    }
 }
