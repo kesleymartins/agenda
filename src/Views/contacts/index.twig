@@ -16,7 +16,7 @@
     <tbody>
       {% for contact in contacts %}
         <tr>
-          <td>{{ contactt.type }}</td>
+          <td>{{ contact.type.label }}</td>
           <td>{{ contact.description }}</td>
           <td class="is-flex is-justify-content-flex-end">
             <a href="/contacts/{{ contact.id }}/edit" class="button mr-2">Editar</a>
