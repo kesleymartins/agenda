@@ -16,4 +16,10 @@ $router->add('/people', 'POST', PeopleController::class, 'create');
 $router->add('/people/:id/edit', 'GET', PeopleController::class, 'edit');
 $router->add('/people/:id', 'POST', PeopleController::class, 'update');
 
-$router->dispatch($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);
+$requestMethod = $_SERVER['REQUEST_METHOD'];
+
+if (isset($_POST['_method']) && $_POST['_method']) {
+    $requestMethod = $_POST['_method'];
+}
+
+$router->dispatch($_SERVER['REQUEST_URI'], $requestMethod);
