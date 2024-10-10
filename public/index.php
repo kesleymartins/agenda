@@ -4,8 +4,8 @@ use App\Agenda\Controllers\ContactsController;
 use App\Agenda\Controllers\PeopleController;
 use App\Agenda\Core\Router;
 
-require_once __DIR__ . '/../../vendor/autoload.php';
-require __DIR__ . '/../../bootstrap.php';
+require_once __DIR__ . '/../vendor/autoload.php';
+require __DIR__ . '/../bootstrap.php';
 
 $router = new Router($entityManager);
 
