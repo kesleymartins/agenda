@@ -9,8 +9,7 @@ require __DIR__ . '/../../bootstrap.php';
 
 $router = new Router($entityManager);
 
-$router->add('/contacts', ContactsController::class, 'index');
-$router->add('/users', PeopleController::class, 'index');
 $router->add('/', PeopleController::class, 'index');
+$router->add('/people', PeopleController::class, 'index');
 
 $router->dispatch($_SERVER['REQUEST_URI']);
