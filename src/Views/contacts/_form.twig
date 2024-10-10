@@ -5,7 +5,9 @@
         <option value="">-- Selecione -- </option>
 
         {% for type in types %}
-          <option value="{{ type.value }}">{{ type.label }}</option>
+          {% set selected = type.value == contact.type.value ? 'selected' : '' %}
+
+          <option value="{{ type.value }}" {{ selected }}>{{ type.label }}</option>
         {% endfor %}
       </select>
     </div>
