@@ -10,22 +10,23 @@ class Router
 
     public function __construct(private EntityManagerInterface $entityManager) {}
 
-    public function add(string $route, string $controller, string $method): void
+    public function add(string $route, string $action, string $controller, string $method): void
     {
         $route = preg_replace('/:[a-z_]+/', '\d+', $route);
         $this->routes[] = [
             'route' => $route,
+            'action' => $action,
             'controller' => $controller,
-            'method' => $method
+            'method' => strtoupper($method),
         ];
     }
 
-    public function dispatch(string $requestedRoute): void
+    public function dispatch(string $requestedRoute, string $action): void
     {
         foreach ($this->routes as $route) {
             $pattern = '@^' . $route['route'] . '$@';
 
-            if (preg_match($pattern, $requestedRoute)) {
+            if (preg_match($pattern, $requestedRoute) && $route['action'] === $action) {
                 $controller = new $route['controller']($this->entityManager);
 
                 preg_match_all('/\d+/', $requestedRoute, $params);
