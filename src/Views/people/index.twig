@@ -1,13 +1,41 @@
-<!-- views/user.php -->
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agenda</title>
-</head>
-<body>
-    <h1>People#index</h1>
-</body>
-</html>
+{% extends 'layout.twig' %}
 
+{% block body %}
+  <div class="is-flex is-justify-content-flex-end mb-4">
+    <a href="/people/new" class="button is-primary">
+      Nova Pessoa
+    </a>
+  </div>
+
+  <table class="table is-bordered is-hoverable is-fullwidth">
+    <thead>
+      <th>Nome</th>
+      <th>CPF</th>
+      <th></th>
+    </thead>
+    <tbody>
+      {% for person in people %}
+        <tr>
+          <td>{{ person.name }}</td>
+          <td>{{ person.cpf }}</td>
+          <td class="is-flex is-justify-content-flex-end">
+            <div class="dropdown is-hoverable">
+              <div class="dropdown-trigger">
+                <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
+                  <span>Ações</span>
+                </button>
+              </div>
+              <div class="dropdown-menu" id="dropdown-menu" role="menu">
+                <div class="dropdown-content">
+                  <a href="#" class="dropdown-item">Editar</a>
+                  <a href="#" class="dropdown-item">Remover</a>
+                  <a href="#" class="dropdown-item">Contatos</a>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
