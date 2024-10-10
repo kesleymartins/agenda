@@ -1,12 +1,13 @@
 <?php declare(strict_types=1);
 
-require_once __DIR__ . '/../../vendor/autoload.php';
-
 use App\Agenda\Controllers\ContactsController;
 use App\Agenda\Controllers\PeopleController;
 use App\Agenda\Core\Router;
 
-$router = new Router();
+require_once __DIR__ . '/../../vendor/autoload.php';
+require __DIR__ . '/../../bootstrap.php';
+
+$router = new Router($entityManager);
 
 $router->add('/contacts', ContactsController::class, 'index');
 $router->add('/users', PeopleController::class, 'index');
