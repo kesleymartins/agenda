@@ -20,6 +20,7 @@ $router->add('/people/:id', 'DELETE', PeopleController::class, 'destroy');
 $router->add('/people/:person_id/contacts', 'GET', ContactsController::class, 'index');
 $router->add('/people/:person_id/contacts/new', 'GET', ContactsController::class, 'new');
 $router->add('/people/:person_id/contacts', 'POST', ContactsController::class, 'create');
+$router->add('/contacts/:id/edit', 'GET', ContactsController::class, 'edit');
 
 $requestMethod = $_SERVER['REQUEST_METHOD'];
 

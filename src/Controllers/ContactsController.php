@@ -56,4 +56,13 @@ class ContactsController extends AbstractController
         header("Location: /people/$person_id/contacts");
     }
 
+    public function edit(int $id): void
+    {
+        $contact = $this->contactRepository->find($id);
+
+        echo $this->twig->render('edit.twig', [
+            'contact' => $contact,
+            'types' => ContactType::cases()
+        ]);
+    }
 }
