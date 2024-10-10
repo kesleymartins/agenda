@@ -7,13 +7,7 @@
     </div>
     <div class="card-content">
       <form id="form-person" action="/people" method="POST">
-        <div class="mb-3">
-          <input class="input" name="name" type="text" placeholder="Nome" />
-        </div>
-
-        <div class="mb-3">
-          <input class="input cpfmask" name="cpf" type="text" placeholder="CPF" />
-        </div>
+        {% include '_form.twig' %}
       </form>
 
       <hr>

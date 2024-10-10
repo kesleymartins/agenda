@@ -9,13 +9,7 @@
       <form id="form-person" action="/people/{{ person.id }}" method="POST">
         <input type="hidden" name="_method" value="PUT">
 
-        <div class="mb-3">
-          <input class="input" name="name" type="text" placeholder="Nome" value="{{ person.name }}" />
-        </div>
-
-        <div class="mb-3">
-          <input class="input cpfmask" name="cpf" type="text" placeholder="CPF" value="{{ person.cpf }}"/>
-        </div>
+        {% include '_form.twig' %}
       </form>
 
       <hr>
