@@ -8,21 +8,4 @@ use Doctrine\ORM\EntityRepository;
 /**
  * @extends EntityRepository<Contact>
  */
-class ContactRepository extends EntityRepository
-{
-    public function save(Contact $contact): void
-    {
-        $em = $this->getEntityManager();
-
-        $em->persist($contact);
-        $em->flush();
-    }
-
-    public function remove(Contact $contact): void
-    {
-        $em = $this->getEntityManager();
-
-        $em->remove($contact);
-        $em->flush();
-    }
-}
+class ContactRepository extends AbstractRepository {}
