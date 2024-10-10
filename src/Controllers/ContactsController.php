@@ -26,4 +26,13 @@ class ContactsController extends AbstractController
             'contacts' => $contacts
         ]);
     }
+
+    public function new(int $person_id): void
+    {
+        echo $this->twig->render('new.twig', [
+            'person_id' => $person_id,
+            'contact' => new Contact(),
+            'types' => ContactType::cases()
+        ]);
+    }
 }
