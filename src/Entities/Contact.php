@@ -2,6 +2,8 @@
 
 namespace App\Agenda\Entities;
 
+use App\Agenda\Repositories\ContactRepository;
+use App\Agenda\Types\ContactType;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\GeneratedValue;
@@ -19,11 +21,11 @@ class Contact
     #[GeneratedValue]
     private int $id;
 
-    #[Column(type: 'string')]
-    private string $name;
+    #[Column(type: 'integer', enumType: ContactType::class)]
+    private ContactType $type;
 
-    #[Column(type: 'string')]
-    private string $cpf;
+    #[Column(type: 'text')]
+    private string $description;
 
     #[ManyToOne(targetEntity: Person::class, inversedBy: 'contacts')]
     #[JoinColumn(name: 'person_id', referencedColumnName: 'id')]
@@ -33,6 +35,17 @@ class Contact
     {
         return $this->id;
     }
+
+    public function getType(): ContactType
+    {
+        return $this->type;
+    }
+
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
+
     public function getPerson(): Person
     {
         return $this->person;
