@@ -41,13 +41,28 @@ class Contact
         return $this->type;
     }
 
+    public function setType(ContactType $type): void
+    {
+        $this->type = $type;
+    }
+
     public function getDescription(): string
     {
         return $this->description;
     }
 
+    public function setDescription(string $description): void
+    {
+        $this->description = $description;
+    }
+
     public function getPerson(): Person
     {
         return $this->person;
+    }
+
+    public function setPerson(Person $person): void
+    {
+        $this->person = $person;
     }
 }
