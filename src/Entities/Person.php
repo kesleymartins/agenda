@@ -34,8 +34,18 @@ class Person
         return $this->name;
     }
 
+    public function setName(string $name): void
+    {
+        $this->name = $name;
+    }
+
     public function getCpf(): string
     {
         return $this->cpf;
+    }
+
+    public function setCpf(string $cpf): void
+    {
+        $this->cpf = $cpf;
     }
 }
