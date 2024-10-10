@@ -22,7 +22,7 @@ class Contact
     private int $id;
 
     #[Column(type: 'integer', enumType: ContactType::class)]
-    private ContactType $type;
+    private ?ContactType $type;
 
     #[Column(type: 'text')]
     private string $description;
@@ -33,6 +33,7 @@ class Contact
 
     public function __construct()
     {
+        $this->type = null;
         $this->description = '';
     }
 
@@ -41,7 +42,7 @@ class Contact
         return $this->id;
     }
 
-    public function getType(): ContactType
+    public function getType(): ?ContactType
     {
         return $this->type;
     }
