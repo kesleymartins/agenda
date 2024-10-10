@@ -8,6 +8,8 @@ class Router
 
     public function add(string $route, string $controller, string $method): void
     {
+        $route = preg_replace('/:[a-z_]+/', '\d+', $route);
+
         $this->routes[] = [
             'route' => $route,
             'controller' => $controller,
@@ -18,9 +20,14 @@ class Router
     public function dispatch(string $requestedRoute): void
     {
         foreach ($this->routes as $route) {
-            if ($route['route'] === $requestedRoute) {
+            $pattern = '@^' . $route['route'] . '$@';
+
+            if (preg_match($pattern, $requestedRoute)) {
                 $controller = new $route['controller'];
-                call_user_func([$controller, $route['method']]);
+
+                preg_match_all('/\d+/', $requestedRoute, $params);
+
+                call_user_func_array([$controller, $route['method']], ...$params);
                 return;
             }
         }
