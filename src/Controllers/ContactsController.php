@@ -25,9 +25,10 @@ class ContactsController extends AbstractController
     public function index(int $person_id): void
     {
         $contacts = $this->contactRepository->findBy(['person' => $person_id]);
+        $person = $this->personRepository->find($person_id);
 
         echo $this->twig->render('index.twig', [
-            'person_id' => $person_id,
+            'person' => $person,
             'contacts' => $contacts
         ]);
     }
