@@ -10,5 +10,11 @@ use Doctrine\ORM\EntityRepository;
  */
 class PersonRepository extends EntityRepository
 {
-    //
+    public function save(Person $person): void
+    {
+        $em = $this->getEntityManager();
+
+        $em->persist($person);
+        $em->flush();
+    }
 }
