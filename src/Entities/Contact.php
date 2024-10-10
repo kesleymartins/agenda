@@ -12,8 +12,8 @@ use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\Table;
 
-#[Entity]
 #[Table(name: 'contacts')]
+#[Entity(repositoryClass: ContactRepository::class)]
 class Contact
 {
     #[Id]
