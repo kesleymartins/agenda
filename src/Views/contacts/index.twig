@@ -1,12 +1,34 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agenda</title>
-</head>
-<body>
-    <h1>Contacts#index</h1>
-</body>
-</html>
+{% extends 'layout.twig' %}
 
+{% block body %}
+  <div class="is-flex is-justify-content-flex-end mb-4">
+    <a href="/people/{{ person_id }}/contacts/new" class="button is-primary">
+      Novo Contato
+    </a>
+  </div>
+
+  <table class="table is-bordered is-hoverable is-fullwidth">
+    <thead>
+      <th>Tipo</th>
+      <th>Descrição</th>
+      <th></th>
+    </thead>
+    <tbody>
+      {% for contact in contacts %}
+        <tr>
+          <td>{{ contactt.type }}</td>
+          <td>{{ contact.description }}</td>
+          <td class="is-flex is-justify-content-flex-end">
+            <a href="/contacts/{{ contact.id }}/edit" class="button mr-2">Editar</a>
+
+            <form action="/contacts/{{ contact.id }}" method="POST">
+              <input type="hidden" name="_method" value="DELETE">
+
+              <button class="button is-danger" type="submit">Remover</button>
+            </form>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
