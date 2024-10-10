@@ -17,4 +17,12 @@ class PersonRepository extends EntityRepository
         $em->persist($person);
         $em->flush();
     }
+
+    public function remove(Person $person): void
+    {
+        $em = $this->getEntityManager();
+
+        $em->remove($person);
+        $em->flush();
+    }
 }
