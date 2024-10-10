@@ -17,7 +17,7 @@ $router->add('/people/:id/edit', 'GET', PeopleController::class, 'edit');
 $router->add('/people/:id', 'PUT', PeopleController::class, 'update');
 $router->add('/people/:id', 'DELETE', PeopleController::class, 'destroy');
 
-$router->add('/people/:id/contacts', 'GET', ContactsController::class, 'index');
+$router->add('/people/:person_id/contacts', 'GET', ContactsController::class, 'index');
 
 $requestMethod = $_SERVER['REQUEST_METHOD'];
 
