@@ -32,6 +32,8 @@ class Person
 
     public function __construct()
     {
+        $this->name = '';
+        $this->cpf = '';
         $this->contacts = new ArrayCollection();
     }
 
