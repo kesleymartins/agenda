@@ -1,36 +1,44 @@
 {% extends 'layout.twig' %}
 
 {% block body %}
-  <div class="is-flex is-justify-content-flex-end mb-4">
-    <a href="/people/new" class="button is-primary">
-      Nova Pessoa
-    </a>
+  <div class="box block">
+    <div class="is-flex is-justify-content-space-between mb-4">
+      <div>
+        <h4 class="subtitle is-4"> Pessoas </h4>
+      </div>
+
+      <div>
+        <a href="/people/new" class="button is-small is-primary"> Nova Pessoa </a>
+      </div>
+    </div>
+
+    <hr>
+
+    <table class="table is-bordered is-hoverable is-fullwidth">
+      <thead>
+        <th>Nome</th>
+        <th>CPF</th>
+        <th></th>
+      </thead>
+      <tbody>
+        {% for person in people %}
+          <tr>
+            <td>{{ person.name }}</td>
+            <td>{{ person.cpf }}</td>
+            <td class="is-flex is-justify-content-flex-end">
+              <a href="/people/{{ person.id }}/edit" class="button is-small mr-2">Editar</a>
+
+              <a href="/people/{{ person.id }}/contacts" class="button is-small mr-2">Contatos</a>
+
+              <form action="/people/{{ person.id }}" method="POST">
+                <input type="hidden" name="_method" value="DELETE">
+
+                <button class="button is-small is-danger" type="submit">Remover</button>
+              </form>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
   </div>
-
-  <table class="table is-bordered is-hoverable is-fullwidth">
-    <thead>
-      <th>Nome</th>
-      <th>CPF</th>
-      <th></th>
-    </thead>
-    <tbody>
-      {% for person in people %}
-        <tr>
-          <td>{{ person.name }}</td>
-          <td>{{ person.cpf }}</td>
-          <td class="is-flex is-justify-content-flex-end">
-            <a href="/people/{{ person.id }}/edit" class="button mr-2">Editar</a>
-
-            <a href="/people/{{ person.id }}/contacts" class="button mr-2">Contatos</a>
-
-            <form action="/people/{{ person.id }}" method="POST">
-              <input type="hidden" name="_method" value="DELETE">
-
-              <button class="button is-danger" type="submit"> Remover</button>
-            </form>
-          </td>
-        </tr>
-      {% endfor %}
-    </tbody>
-  </table>
 {% endblock %}
