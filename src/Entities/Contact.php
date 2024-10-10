@@ -31,6 +31,11 @@ class Contact
     #[JoinColumn(name: 'person_id', referencedColumnName: 'id')]
     private Person $person;
 
+    public function __construct()
+    {
+        $this->description = '';
+    }
+
     public function getId(): ?int
     {
         return $this->id;
