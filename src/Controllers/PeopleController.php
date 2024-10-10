@@ -23,4 +23,11 @@ class PeopleController extends AbstractController
             'people' => $this->personRepository->findAll()
         ]);
     }
+
+    public function new(): void
+    {
+        echo $this->twig->render('new.twig', [
+            'person' => new Person()
+        ]);
+    }
 }

@@ -1,0 +1,24 @@
+{% extends 'layout.twig' %}
+
+{% block body %}
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-title">Nova Pessoa</div>
+    </div>
+    <div class="card-content">
+      <form id="form-person" action="/people" method="POST">
+        <div class="mb-3">
+          <input class="input" name="name" type="text" placeholder="Nome" />
+        </div>
+
+        <div class="mb-3">
+          <input class="input" name="cpf" type="text" placeholder="CPF" />
+        </div>
+      </form>
+
+      <div class="is-flex is-justify-content-end">
+        <button class="button is-primary" type="submit" form="form-person"> Criar </button>
+      </div>
+    </div>
+  </div>
+{% endblock %}
