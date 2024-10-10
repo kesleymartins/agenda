@@ -61,4 +61,12 @@ class PeopleController extends AbstractController
 
         header('Location: /people');
     }
+
+    public function destroy(int $id): void
+    {
+        $person = $this->personRepository->find($id);
+        $this->personRepository->remove($person);
+
+        header('Location: /people');
+    }
 }
