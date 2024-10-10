@@ -76,4 +76,12 @@ class ContactsController extends AbstractController
 
         header("Location: /people/{$contact->getPerson()->getId()}/contacts");
     }
+
+    public function destroy(int $id): void
+    {
+        $contact = $this->contactRepository->find($id);
+        $this->contactRepository->remove($contact);
+
+        header("Location: /people/{$contact->getPerson()->getId()}/contacts");
+    }
 }
