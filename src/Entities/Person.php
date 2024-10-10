@@ -3,10 +3,13 @@
 namespace App\Agenda\Entities;
 
 use App\Agenda\Repositories\PersonRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Id;
+use Doctrine\ORM\Mapping\OneToMany;
 use Doctrine\ORM\Mapping\Table;
 
 #[Table(name: 'people')]
@@ -23,6 +26,14 @@ class Person
 
     #[Column(type: 'string')]
     private string $cpf;
+
+    #[OneToMany(targetEntity: Contact::class, mappedBy: 'person')]
+    private Collection $contacts;
+
+    public function __construct()
+    {
+        $this->contacts = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
