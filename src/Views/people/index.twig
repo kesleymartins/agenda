@@ -21,7 +21,7 @@
           <td class="is-flex is-justify-content-flex-end">
             <a href="/people/{{ person.id }}/edit" class="button mr-2">Editar</a>
 
-            <a href="#" class="button mr-2">Contatos</a>
+            <a href="/people/{{ person.id }}/contacts" class="button mr-2">Contatos</a>
 
             <form action="/people/{{ person.id }}" method="POST">
               <input type="hidden" name="_method" value="DELETE">
