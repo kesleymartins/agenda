@@ -19,6 +19,8 @@ class PeopleController extends AbstractController
 
     public function index(): void
     {
-        echo $this->twig->render('index.twig');
+        echo $this->twig->render('index.twig', [
+            'people' => $this->personRepository->findAll()
+        ]);
     }
 }
