@@ -10,6 +10,11 @@ class AbstractController
 
     public function __construct()
     {
+        $this->twigSetup();
+    }
+
+    private function twigSetup(): void
+    {
         $class_path = explode('\\', get_class($this));
         $class = end($class_path);
         $controller = str_replace('Controller', '', $class);
