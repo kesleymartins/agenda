@@ -38,6 +38,14 @@
             </td>
           </tr>
         {% endfor %}
+
+        {% if people|length == 0 %}
+          <tr class="">
+            <td colspan="3" class="has-text-centered">
+              Sem dados.
+            </td>
+          </tr>
+        {% endif %}
       </tbody>
     </table>
   </div>
