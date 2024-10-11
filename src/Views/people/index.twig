@@ -1,6 +1,29 @@
 {% extends 'layout.twig' %}
 
 {% block body %}
+  <div class="block box">
+    <div class="mb-2">
+      <h4 class="subtitle is-4">Filtro</h4>
+    </div>
+
+    <form id="people-search" action="/" method="GET">
+      <div class="field mb-3">
+        <label class="label">Nome</label>
+        <div class="control">
+          <input class="input" type="text" name="name" value="{{ filter.name }}">
+        </div>
+      </div>
+    </form>
+
+    <div class="is-flex is-justify-content-flex-end">
+      <a href="/people" class="button is-small mr-3">Limpar</a>
+
+      <button type="submit" form="people-search" class="button is-small is-dark">
+        Buscar
+      </button>
+    </div>
+  </div>
+
   <div class="box block">
     <div class="is-flex is-justify-content-space-between mb-4">
       <div>
