@@ -43,7 +43,7 @@ class Router
 
     private function removeGetParams(string $route): string
     {
-        $route = preg_replace('/\/\?[a-zA-Z0-9=&]+/', '', $route);
+        $route = preg_replace('/\/\?.*/', '', $route);
 
         if (empty($route)) {
             $route = '/';
