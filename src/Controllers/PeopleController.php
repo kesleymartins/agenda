@@ -19,8 +19,13 @@ class PeopleController extends AbstractController
 
     public function index(): void
     {
+        $filter = [
+            'name' => $this->request->getParam('name')
+        ];
+
         echo $this->twig->render('index.twig', [
-            'people' => $this->personRepository->findAll()
+            'filter' => $filter,
+            'people' => $this->personRepository->getAll($filter)
         ]);
     }
 
