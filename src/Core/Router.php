@@ -26,8 +26,10 @@ class Router
         foreach ($this->routes as $route) {
             $pattern = '@^' . $route['route'] . '$@';
 
+            $requestedRoute = $this->removeGetParams($requestedRoute);
+
             if (preg_match($pattern, $requestedRoute) && $route['action'] === $action) {
-                $controller = new $route['controller']($this->entityManager);
+                $controller = new $route['controller']($this->entityManager, new Request());
 
                 preg_match_all('/\d+/', $requestedRoute, $params);
 
@@ -37,5 +39,16 @@ class Router
         }
 
         echo '404 - Página não encontrada';
+    }
+
+    private function removeGetParams(string $route): string
+    {
+        $route = preg_replace('/\/\?[a-zA-Z0-9=&]+/', '', $route);
+
+        if (empty($route)) {
+            $route = '/';
+        }
+
+        return $route;
     }
 }
