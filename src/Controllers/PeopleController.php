@@ -20,7 +20,7 @@ class PeopleController extends AbstractController
     public function index(): void
     {
         $filter = [
-            'name' => $this->request->getParam('name')
+            'name' => urldecode($_GET['name'] ?? '')
         ];
 
         echo $this->twig->render('index.twig', [
