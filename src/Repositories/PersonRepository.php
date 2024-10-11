@@ -8,4 +8,16 @@ use Doctrine\ORM\EntityRepository;
 /**
  * @extends EntityRepository<Person>
  */
-class PersonRepository extends AbstractRepository {}
+class PersonRepository extends AbstractRepository
+{
+    public function getAll(array $filter)
+    {
+        $qb = $this->createQueryBuilder('p');
+
+        if ($filter['name']) {
+            $qb->where('LOWER(p.name) like :name')->setParameter('name', "%{$filter['name']}%");
+        }
+
+        return $qb->getQuery()->getResult();
+    }
+}
