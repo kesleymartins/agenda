@@ -14,12 +14,12 @@ class ContactsController extends AbstractController
     private ContactRepository $contactRepository;
     private PersonRepository $personRepository;
 
-    public function __construct(EntityManagerInterface $entityManager)
+    public function __construct(EntityManagerInterface $em)
     {
         parent::__construct();
 
-        $this->contactRepository = $entityManager->getRepository(Contact::class);
-        $this->personRepository = $entityManager->getRepository(Person::class);
+        $this->contactRepository = $em->getRepository(Contact::class);
+        $this->personRepository = $em->getRepository(Person::class);
     }
 
     public function index(int $person_id): void

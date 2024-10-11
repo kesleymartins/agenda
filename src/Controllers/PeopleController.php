@@ -10,11 +10,11 @@ class PeopleController extends AbstractController
 {
     private PersonRepository $personRepository;
 
-    public function __construct(EntityManagerInterface $entityManager)
+    public function __construct(EntityManagerInterface $em)
     {
         parent::__construct();
 
-        $this->personRepository = $entityManager->getRepository(Person::class);
+        $this->personRepository = $em->getRepository(Person::class);
     }
 
     public function index(): void
