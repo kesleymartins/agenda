@@ -29,7 +29,7 @@ class Router
             $requestedRoute = $this->removeGetParams($requestedRoute);
 
             if (preg_match($pattern, $requestedRoute) && $route['action'] === $action) {
-                $controller = new $route['controller']($this->entityManager, new Request());
+                $controller = new $route['controller']($this->entityManager);
 
                 preg_match_all('/\d+/', $requestedRoute, $params);
 
