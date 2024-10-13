@@ -4,31 +4,25 @@ namespace App\Agenda\Entities;
 
 use App\Agenda\Repositories\ContactRepository;
 use App\Agenda\Types\ContactType;
-use Doctrine\ORM\Mapping\Column;
-use Doctrine\ORM\Mapping\Entity;
-use Doctrine\ORM\Mapping\GeneratedValue;
-use Doctrine\ORM\Mapping\Id;
-use Doctrine\ORM\Mapping\JoinColumn;
-use Doctrine\ORM\Mapping\ManyToOne;
-use Doctrine\ORM\Mapping\Table;
+use Doctrine\ORM\Mapping as ORM;
 
-#[Table(name: 'contacts')]
-#[Entity(repositoryClass: ContactRepository::class)]
+#[ORM\Table(name: 'contacts')]
+#[ORM\Entity(repositoryClass: ContactRepository::class)]
 class Contact
 {
-    #[Id]
-    #[Column(type: 'integer')]
-    #[GeneratedValue]
+    #[ORM\Id]
+    #[ORM\Column(type: 'integer')]
+    #[ORM\GeneratedValue]
     private int $id;
 
-    #[Column(type: 'integer', enumType: ContactType::class)]
+    #[ORM\Column(type: 'integer', enumType: ContactType::class)]
     private ?ContactType $type;
 
-    #[Column(type: 'text')]
+    #[ORM\Column(type: 'text')]
     private string $description;
 
-    #[ManyToOne(targetEntity: Person::class, inversedBy: 'contacts')]
-    #[JoinColumn(name: 'person_id', referencedColumnName: 'id')]
+    #[ORM\ManyToOne(targetEntity: Person::class, inversedBy: 'contacts')]
+    #[ORM\JoinColumn(name: 'person_id', referencedColumnName: 'id')]
     private Person $person;
 
     public function __construct()

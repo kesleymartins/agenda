@@ -5,29 +5,24 @@ namespace App\Agenda\Entities;
 use App\Agenda\Repositories\PersonRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\ORM\Mapping\Column;
-use Doctrine\ORM\Mapping\Entity;
-use Doctrine\ORM\Mapping\GeneratedValue;
-use Doctrine\ORM\Mapping\Id;
-use Doctrine\ORM\Mapping\OneToMany;
-use Doctrine\ORM\Mapping\Table;
+use Doctrine\ORM\Mapping as ORM;
 
-#[Table(name: 'people')]
-#[Entity(repositoryClass: PersonRepository::class)]
+#[ORM\Table(name: 'people')]
+#[ORM\Entity(repositoryClass: PersonRepository::class)]
 class Person
 {
-    #[Id]
-    #[Column(type: 'integer')]
-    #[GeneratedValue]
+    #[ORM\Id]
+    #[ORM\Column(type: 'integer')]
+    #[ORM\GeneratedValue]
     private int $id;
 
-    #[Column(type: 'string')]
+    #[ORM\Column(type: 'string')]
     private string $name;
 
-    #[Column(type: 'string')]
+    #[ORM\Column(type: 'string')]
     private string $cpf;
 
-    #[OneToMany(targetEntity: Contact::class, mappedBy: 'person', cascade: ['remove'])]
+    #[ORM\OneToMany(targetEntity: Contact::class, mappedBy: 'person', cascade: ['remove'])]
     private Collection $contacts;
 
     public function __construct()
