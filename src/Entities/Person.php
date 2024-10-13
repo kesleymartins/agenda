@@ -6,6 +6,7 @@ use App\Agenda\Repositories\PersonRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Table(name: 'people')]
 #[ORM\Entity(repositoryClass: PersonRepository::class)]
@@ -16,10 +17,12 @@ class Person
     #[ORM\GeneratedValue]
     private int $id;
 
+    #[Assert\NotBlank]
     #[ORM\Column(type: 'string')]
     private string $name;
 
     #[ORM\Column(type: 'string')]
+    #[Assert\NotBlank]
     private string $cpf;
 
     #[ORM\OneToMany(targetEntity: Contact::class, mappedBy: 'person', cascade: ['remove'])]
