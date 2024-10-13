@@ -27,7 +27,7 @@ class Person
     #[Column(type: 'string')]
     private string $cpf;
 
-    #[OneToMany(targetEntity: Contact::class, mappedBy: 'person')]
+    #[OneToMany(targetEntity: Contact::class, mappedBy: 'person', cascade: ['remove'])]
     private Collection $contacts;
 
     public function __construct()
