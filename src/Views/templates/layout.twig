@@ -26,6 +26,14 @@
   </nav>
 
   <main class="container py-6">
+    {% for flash in flash_messages  %}
+      <div class="message {{ flash.type.color }}">
+        <div class="message-body">
+          <span>{{ flash.message }}</span>
+        </div>
+      </div>
+    {% endfor %}
+
     {% block body %}{% endblock %}
   </main>
 
