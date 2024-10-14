@@ -5,6 +5,7 @@ namespace App\Agenda\Entities;
 use App\Agenda\Repositories\ContactRepository;
 use App\Agenda\Types\ContactType;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Table(name: 'contacts')]
 #[ORM\Entity(repositoryClass: ContactRepository::class)]
@@ -15,9 +16,11 @@ class Contact
     #[ORM\GeneratedValue]
     private int $id;
 
+    #[Assert\NotBlank]
     #[ORM\Column(type: 'integer', enumType: ContactType::class)]
     private ?ContactType $type;
 
+    #[Assert\NotBlank]
     #[ORM\Column(type: 'text')]
     private string $description;
 
