@@ -1,4 +1,5 @@
 # Agenda
+Aplicação para gerenciamento de uma Agenda, feito com PHP.
 
 ## Tecnolologias
 - PHP
