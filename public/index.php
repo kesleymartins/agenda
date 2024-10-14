@@ -30,4 +30,6 @@ if (isset($_POST['_method']) && $_POST['_method']) {
     $requestMethod = $_POST['_method'];
 }
 
+session_start();
+
 $router->dispatch($_SERVER['REQUEST_URI'], $requestMethod);
