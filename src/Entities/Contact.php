@@ -16,11 +16,11 @@ class Contact
     #[ORM\GeneratedValue]
     private int $id;
 
-    #[Assert\NotBlank]
+    #[Assert\NotBlank(message: 'Campo não pode ficar vazio')]
     #[ORM\Column(type: 'integer', enumType: ContactType::class)]
     private ?ContactType $type;
 
-    #[Assert\NotBlank]
+    #[Assert\NotBlank(message: 'Campo não pode ficar vazio')]
     #[ORM\Column(type: 'text')]
     private string $description;
 

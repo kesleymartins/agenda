@@ -17,12 +17,12 @@ class Person
     #[ORM\GeneratedValue]
     private int $id;
 
-    #[Assert\NotBlank]
+    #[Assert\NotBlank(message: 'Campo não pode ficar vazio')]
     #[ORM\Column(type: 'string')]
     private string $name;
 
     #[ORM\Column(type: 'string')]
-    #[Assert\NotBlank]
+    #[Assert\NotBlank(message: 'Campo não pode ficar vazio')]
     private string $cpf;
 
     #[ORM\OneToMany(targetEntity: Contact::class, mappedBy: 'person', cascade: ['remove'])]
