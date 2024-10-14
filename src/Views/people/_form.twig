@@ -1,3 +1,16 @@
+{% if formErrors %}
+  <div class="message is-danger">
+    <div class="message-body">
+      {% for error in formErrors %}
+        <p>
+          <strong>{{ error.propertyPath }}:</strong>
+          <span>{{ error.message }}</span>
+        </p>
+      {% endfor %}
+    </div>
+  </div>
+{% endif %}
+
 <div class="mb-3">
   <input class="input" name="name" type="text" placeholder="Nome" value="{{ person.name }}" />
 </div>
