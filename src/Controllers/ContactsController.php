@@ -2,11 +2,13 @@
 
 namespace App\Agenda\Controllers;
 
+use App\Agenda\Core\FlashMessage;
 use App\Agenda\Entities\Contact;
 use App\Agenda\Entities\Person;
 use App\Agenda\Repositories\ContactRepository;
 use App\Agenda\Repositories\PersonRepository;
 use App\Agenda\Types\ContactType;
+use App\Agenda\Types\FlashType;
 use Doctrine\ORM\EntityManagerInterface;
 
 class ContactsController extends AbstractController
@@ -27,7 +29,7 @@ class ContactsController extends AbstractController
         $contacts = $this->contactRepository->findBy(['person' => $person_id]);
         $person = $this->personRepository->find($person_id);
 
-        echo $this->twig->render('index.twig', [
+        echo $this->response->render('index', [
             'person' => $person,
             'contacts' => $contacts
         ]);
@@ -35,7 +37,7 @@ class ContactsController extends AbstractController
 
     public function new(int $person_id): void
     {
-        echo $this->twig->render('new.twig', [
+        echo $this->response->render('new', [
             'person_id' => $person_id,
             'contact' => new Contact(),
             'types' => ContactType::cases()
@@ -51,18 +53,31 @@ class ContactsController extends AbstractController
         $contact->setDescription($_POST['description']);
         $contact->setPerson($person);
 
+        $errors = $this->validator->validate($contact);
+
+        if (count($errors) > 0) {
+            FlashMessage::add(FlashType::Error, 'Verifique os campos antes de continuar.');
+            $this->response->render('new', [
+                'person_id' => $person_id,
+                'contact' => $contact,
+                'types' => ContactType::cases(),
+                'formErrors' => $errors,
+            ]);
+        }
+
         $this->contactRepository->save($contact);
 
-        header("Location: /people/$person_id/contacts");
+        FlashMessage::add(FlashType::Success, 'Contato criado.');
+        $this->response->redirect("/people/$person_id/contacts");
     }
 
     public function edit(int $id): void
     {
         $contact = $this->contactRepository->find($id);
 
-        echo $this->twig->render('edit.twig', [
+        echo $this->response->render('edit', [
             'contact' => $contact,
-            'types' => ContactType::cases()
+            'types' => ContactType::cases(),
         ]);
     }
 
@@ -72,9 +87,21 @@ class ContactsController extends AbstractController
         $contact->setType(ContactType::from((int) $_POST['type']));
         $contact->setDescription($_POST['description']);
 
+        $errors = $this->validator->validate($contact);
+
+        if (count($errors) > 0) {
+            FlashMessage::add(FlashType::Error, 'Verifique os campos antes de continuar.');
+            $this->response->render('edit', [
+                'contact' => $contact,
+                'formErrors' => $errors,
+                'types' => ContactType::cases()
+            ]);
+        }
+
         $this->contactRepository->save($contact);
 
-        header("Location: /people/{$contact->getPerson()->getId()}/contacts");
+        FlashMessage::add(FlashType::Success, 'Contato atualizado.');
+        $this->response->redirect("/people/{$contact->getPerson()->getId()}/contacts");
     }
 
     public function destroy(int $id): void
@@ -82,6 +109,7 @@ class ContactsController extends AbstractController
         $contact = $this->contactRepository->find($id);
         $this->contactRepository->remove($contact);
 
-        header("Location: /people/{$contact->getPerson()->getId()}/contacts");
+        FlashMessage::add(FlashType::Success, 'Contato removido.');
+        $this->response->redirect("/people/{$contact->getPerson()->getId()}/contacts");
     }
 }
