@@ -1,9 +1,20 @@
+{% if formErrors %}
+  <div class="message is-danger">
+    <div class="message-body">
+      {% for error in formErrors %}
+        <p>
+          <strong>{{ error.propertyPath }}:</strong>
+          <span>{{ error.message }}</span>
+        </p>
+      {% endfor %}
+    </div>
+  </div>
+{% endif %}
+
 <div class="columns">
   <div class="column control">
     <div class="select">
       <select name="type">
-        <option value="">-- Selecione -- </option>
-
         {% for type in types %}
           {% set selected = type.value == contact.type.value ? 'selected' : '' %}
 
