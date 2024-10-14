@@ -4,7 +4,7 @@ Aplicação para gerenciamento de uma Agenda, feito com PHP.
 ## Tecnolologias
 - PHP
 - Twig
-- Doctrine
+- Doctrine ORM
 
 ## Requisitos
 - Docker
