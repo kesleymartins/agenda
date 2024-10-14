@@ -80,7 +80,6 @@ class PeopleController extends AbstractController
 
         if (count($errors) > 0) {
             FlashMessage::add(FlashType::Error, 'Verifique os campos antes de continuar.');
-
             $this->response->render('edit', [
                 'person' => $person,
                 'formErrors' => $errors
@@ -99,7 +98,6 @@ class PeopleController extends AbstractController
         $this->personRepository->remove($person);
 
         FlashMessage::add(FlashType::Success, 'Pessoa Removida.');
-
         $this->response->redirect('/people');
     }
 }
